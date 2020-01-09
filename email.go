@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 )
 
-func main(){
+func email(string message){
 
 	data, err := ioutil.ReadFile("mail_config.json")
 	if err != nil {
@@ -18,8 +18,9 @@ func main(){
 	type MailConfig struct {
                 recipients []string `json:"recipients"`
                 sender string `json:"sender"`
-                message []byte `json:"message"`
+                hostname []byte `json:"hostname"`
                 password string `json:"password"`
+		port string `json:"port"`
         }
 
 	var obj MailConfig
@@ -30,10 +31,14 @@ func main(){
 
 	hostname := "smtp.gmail.com"
 	auth := smtp.PlainAuth("", obj.sender, obj.password, hostname)
-	err = smtp.SendMail("smtp.gmail.com:25", auth, obj.sender, obj.recipients, obj.message)
+	err = smtp.SendMail(obj.hostname+":"+obj.port, auth, obj.sender, obj.recipients,[]byte(message))
 	if err != nil {
 		log.Fatal(err)
 		fmt.Println("Error: %s",err)
 	}
 
+}
+
+func main(){
+	email("My first Golang Email")
 }
