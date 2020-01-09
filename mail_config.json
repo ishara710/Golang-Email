@@ -1,0 +1,7 @@
+{
+        "recipients" : ["friend1@gmail.com", "friend2@email.com"],
+        "sender":"youremail@gmail.com",
+        "password" : "",
+        "hostname":"smtp.gmail.com",
+        "port":"25"
+}
