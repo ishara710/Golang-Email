@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 )
-
 func email(string message){
 
 	data, err := ioutil.ReadFile("mail_config.json")
@@ -38,7 +37,6 @@ func email(string message){
 	}
 
 }
-
 func main(){
 	email("My first Golang Email")
 }
